@@ -2,47 +2,46 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rikunali - Géobiologie, Soins Énergétiques et Art Vibratoire en Suisse Romande. Harmonisation de l'habitat, magnétisme et créations intuitives. Interventions à Lausanne, Genève, Vaud et à distance.">
-    <meta name="keywordsa content="Géobiologie, Soins énergétiques, Magnétisme, Suisse Romande, Art Vibratoire, Mandala, Nettoyage énergétique, Lausanne, Vaud">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Rikunali - Géobiologie, Soins Énergétiques et Art Vibratoire en Suisse Romande. Harmonisation de l'habitat, magnétisme et créations intuitives.">
+    <meta name="keywords" content="Géobiologie, Soins énergétiques, Magnétisme, Suisse Romande, Art Vibratoire, Mandala, Nettoyage énergétique, Lausanne, Vaud">
     <meta name="author" content="Rikunali">
+    <meta name="theme-color" content="#2d5a4c">
     
-    <!-- Open Graph / Facebook / WhatsApp -->
+    <!-- Open Graph -->
     <meta property="og:type" content="business.business">
     <meta property="og:url" content="https://rikunali.ch/">
     <meta property="og:title" content="Rikunali | Géobiologie & Soins Énergétiques">
     <meta property="og:description" content="Harmonisez votre lieu de vie et retrouvez votre vitalité. Expertise en géobiologie et soins énergétiques en Suisse Romande.">
     <meta property="og:image" content="assets/rikunali-portrait.webp">
+    <meta property="og:site_name" content="Rikunali">
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://rikunali.ch/">
-    <meta property="twitter:title" content="Rikunali | Géobiologie & Soins Énergétiques">
-    <meta property="twitter:description" content="Harmonisez votre lieu de vie et retrouvez votre vitalité. Expertise en géobiologie et soins énergétiques en Suisse Romande.">
-    <meta property="twitter:image" content="assets/rikunali-portrait.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rikunali | Géobiologie & Soins Énergétiques">
+    <meta name="twitter:description" content="Harmonisez votre lieu de vie et retrouvez votre vitalité.">
+    <meta name="twitter:image" content="assets/rikunali-portrait.webp">
 
     <!-- Sécurité -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+
     <title>Rikunali | Géobiologie, Soins & Art Vibratoire Suisse</title>
+
+    <!-- Preconnect pour les ressources tierces -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
     
-    <!-- React & ReactDOM -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    
-    <!-- Babel for JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS (allégé via CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Lucide Icons -->
+    <!-- Lucide Icons (léger) -->
     <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Google Fonts -->
+    
+    <!-- Google Fonts avec display=swap pour éviter le FOIT -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-
-    <!-- Schema.org JSON-LD pour le référencement local -->
+    
+    <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -58,12 +57,13 @@
       },
       "url": "https://rikunali.ch",
       "priceRange": "$$",
-      "description": "Géobiologie de l'habitat et soins énergétiques en Suisse Romande. Art vibratoire et harmonisation.",
+      "description": "Géobiologie de l'habitat et soins énergétiques en Suisse Romande.",
       "areaServed": "Suisse Romande"
     }
     </script>
 
     <style>
+        /* Styles personnalisés */
         body {
             font-family: 'Noto Sans', sans-serif;
             scroll-behavior: smooth;
@@ -72,7 +72,7 @@
             font-family: 'Playfair Display', serif;
         }
         .fade-in {
-            animation: fadeIn 0.8s ease-in-out;
+            animation: fadeIn 0.6s ease-out;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -86,306 +86,519 @@
         .video-overlay {
             background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
         }
-        /* Animation pour les boutons flottants */
         .float-btn {
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .float-btn:hover {
             transform: scale(1.1);
         }
-        /* Style pour les images de la galerie */
         .gallery-img {
             transition: transform 0.7s ease;
         }
         .gallery-item:hover .gallery-img {
             transform: scale(1.05);
         }
-        /* Lightbox overlay */
         .lightbox-overlay {
             background-color: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(5px);
+        }
+        /* Masquer les éléments de langue non actifs */
+        .lang-content {
+            display: none;
+        }
+        .lang-content.active {
+            display: block;
+        }
+        /* Animation du loader du formulaire */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin {
+            animation: spin 1s linear infinite;
         }
     </style>
 </head>
 <body class="bg-stone-50 text-stone-800 antialiased">
 
-    <div id="root"></div>
+    <!-- ========== CONTENU MULTILINGUE ========== -->
+    <div id="app">
+        <!-- Le contenu sera injecté par JS, mais on garde une structure HTML sémantique -->
+    </div>
 
-    <script type="text/babel">
-        const { useState, useEffect } = React;
-
-        // --- CONTENU ---
+    <script>
+        // ------------------------------------------------------------------
+        // 1. CONTENU TRADUCTIONS (identique à ton objet, mais sans React)
+        // ------------------------------------------------------------------
         const content = {
             fr: {
                 nav: { home: "Accueil", geo: "Géobiologie", healing: "Soins", gallery: "Galerie", shop: "Créations", about: "À Propos", contact: "Contact" },
-                hero: {
-                    title: "Géobiologie et Soins Énergétiques en Suisse Romande",
-                    subtitle: "Harmonisez votre lieu de vie et retrouvez votre vitalité. Interventions à Lausanne, Genève, Vaud et à distance.",
-                    cta: "Demander un diagnostic gratuit"
-                },
-                services: {
-                    title: "Mon Expertise",
-                    geo_title: "Géobiologie de l'Habitat",
-                    geo_desc: "Je transforme votre maison en un lieu de ressourcement. Analyse des réseaux telluriques et purification des mémoires.",
-                    heal_title: "Soins Énergétiques",
-                    heal_desc: "Je libère vos blocages émotionnels et revitalise vos corps subtils. Séances en cabinet ou à distance.",
-                    shop_title: "Créations Vibratoires",
-                    shop_desc: "Mes objets uniques et dynamisés pour maintenir une haute vibration chez vous ou sur votre lieu de travail."
-                },
-                gallery: {
-                    title: "Galerie Artistique",
-                    subtitle: "L'art comme vecteur de guérison et de connexion aux mondes subtils. Cliquez pour agrandir.",
-                    item1: "Mandala de l'Intuition",
-                    item2: "Connexion Animale",
-                    item3: "Rituel de l'Eau",
-                    item4: "Lumière Intérieure",
-                    item5: "Vision Nature"
-                },
-                about: {
-                    title: "Votre Partenaire Bien-être",
-                    desc1: "Passionnée par les dynamiques du vivant et les mondes subtils, j'accompagne les particuliers et les entreprises depuis plus de 15 ans.",
-                    desc2: "Mon approche est holistique : je ne traite pas un symptôme, je considère la personne dans sa globalité et dans son interaction avec son environnement. Inspirée par la sagesse ancestrale et la nature.",
-                    stats_exp: "Ans d'expérience",
-                    stats_loc: "Suisse Romande"
-                },
-                contact: {
-                    title: "Contactez Rikunali",
-                    form_name: "Votre Nom",
-                    form_email: "Votre Email",
-                    form_msg: "Votre Message",
-                    btn: "Envoyer ma demande",
-                    success: "Merci ! Votre message a bien été envoyé. Je vous répondrai sous 48h.",
-                    info: "J'interviens dans toute la Suisse Romande."
-                },
-                cookies: {
-                    text: "Ce site utilise des cookies pour garantir une expérience optimale.",
-                    accept: "Accepter",
-                    decline: "Refuser"
-                },
-                popup: {
-                    title: "Offre Découverte",
-                    text: "Profitez d'une première consultation téléphonique de 15 min gratuite pour définir vos besoins.",
-                    btn: "J'en profite",
-                    close: "Non merci"
-                }
+                hero: { title: "Géobiologie et Soins Énergétiques en Suisse Romande", subtitle: "Harmonisez votre lieu de vie et retrouvez votre vitalité. Interventions à Lausanne, Genève, Vaud et à distance.", cta: "Demander un diagnostic gratuit" },
+                services: { title: "Mon Expertise", geo_title: "Géobiologie de l'Habitat", geo_desc: "Je transforme votre maison en un lieu de ressourcement. Analyse des réseaux telluriques et purification des mémoires.", heal_title: "Soins Énergétiques", heal_desc: "Je libère vos blocages émotionnels et revitalise vos corps subtils. Séances en cabinet ou à distance.", shop_title: "Créations Vibratoires", shop_desc: "Mes objets uniques et dynamisés pour maintenir une haute vibration chez vous ou sur votre lieu de travail." },
+                gallery: { title: "Galerie Artistique", subtitle: "L'art comme vecteur de guérison et de connexion aux mondes subtils. Cliquez pour agrandir.", item1: "Mandala de l'Intuition", item2: "Connexion Animale", item3: "Rituel de l'Eau", item4: "Lumière Intérieure", item5: "Vision Nature" },
+                about: { title: "Votre Partenaire Bien-être", desc1: "Passionnée par les dynamiques du vivant et les mondes subtils, j'accompagne les particuliers et les entreprises depuis plus de 15 ans.", desc2: "Mon approche est holistique : je ne traite pas un symptôme, je considère la personne dans sa globalité et dans son interaction avec son environnement. Inspirée par la sagesse ancestrale et la nature.", stats_exp: "Ans d'expérience", stats_loc: "Suisse Romande" },
+                contact: { title: "Contactez Rikunali", form_name: "Votre Nom", form_email: "Votre Email", form_msg: "Votre Message", btn: "Envoyer ma demande", success: "Merci ! Votre message a bien été envoyé. Je vous répondrai sous 48h.", info: "J'interviens dans toute la Suisse Romande." },
+                cookies: { text: "Ce site utilise des cookies pour garantir une expérience optimale.", accept: "Accepter", decline: "Refuser" },
+                popup: { title: "Offre Découverte", text: "Profitez d'une première consultation téléphonique de 15 min gratuite pour définir vos besoins.", btn: "J'en profite", close: "Non merci" }
             },
             de: {
                 nav: { home: "Startseite", geo: "Geobiologie", healing: "Behandlungen", gallery: "Galerie", shop: "Kreationen", about: "Über mich", contact: "Kontakt" },
-                hero: {
-                    title: "Geobiologie und Energiearbeit in der Romandie",
-                    subtitle: "Harmonisieren Sie Ihren Lebensraum und finden Sie Ihre Vitalität wieder. Einsätze in Lausanne, Genf, Waadt und per Fernbehandlung.",
-                    cta: "Kostenlose Diagnose anfordern"
-                },
-                services: {
-                    title: "Meine Expertise",
-                    geo_title: "Wohnraum-Geobiologie",
-                    geo_desc: "Ich verwandle Ihr Zuhause in einen Ort der Erholung. Analyse tellurischer Netze und Reinigung von Speicherungen.",
-                    heal_title: "Energiebehandlungen",
-                    heal_desc: "Ich löse emotionale Blockaden und revitalisiere Ihren feinstofflichen Körper. Sitzungen in der Praxis oder aus der Ferne.",
-                    shop_title: "Schwingungskreationen",
-                    shop_desc: "Meine einzigartigen und dynamisierten Objekte, um eine hohe Schwingung in Ihrem Zuhause oder am Arbeitsplatz aufrechtzuerhalten."
-                },
-                gallery: {
-                    title: "Kunstgalerie",
-                    subtitle: "Kunst als Medium der Heilung und Verbindung zu feinstofflichen Welten.",
-                    item1: "Mandala der Intuition",
-                    item2: "Tierverbindung",
-                    item3: "Wasserritual",
-                    item4: "Inneres Licht",
-                    item5: "Naturvision"
-                },
-                about: {
-                    title: "Ihr Partner für Wohlbefinden",
-                    desc1: "Leidenschaftlich für die Dynamik des Lebendigen und die feinstofflichen Welten begleite ich seit über 15 Jahren Privatpersonen und Unternehmen.",
-                    desc2: "Mein Ansatz ist ganzheitlich: Ich behandle kein Symptom, sondern betrachte die Person in ihrer Gesamtheit und in ihrer Interaktion mit ihrer Umgebung.",
-                    stats_exp: "Jahre Erfahrung",
-                    stats_loc: "Romandie"
-                },
-                contact: {
-                    title: "Kontaktieren Sie Rikunali",
-                    form_name: "Ihr Name",
-                    form_email: "Ihre E-Mail",
-                    form_msg: "Ihre Nachricht",
-                    btn: "Senden",
-                    success: "Danke! Ihre Nachricht wurde gesendet.",
-                    info: "Ich bin in der gesamten Romandie tätig."
-                },
-                cookies: {
-                    text: "Diese Website verwendet Cookies, um eine optimale Erfahrung zu gewährleisten.",
-                    accept: "Akzeptieren",
-                    decline: "Ablehnen"
-                },
-                popup: {
-                    title: "Entdeckungsangebot",
-                    text: "Profitieren Sie von einer ersten kostenlosen 15-minütigen telefonischen Beratung.",
-                    btn: "Profitieren",
-                    close: "Nein danke"
-                }
+                hero: { title: "Geobiologie und Energiearbeit in der Romandie", subtitle: "Harmonisieren Sie Ihren Lebensraum und finden Sie Ihre Vitalität wieder. Einsätze in Lausanne, Genf, Waadt und per Fernbehandlung.", cta: "Kostenlose Diagnose anfordern" },
+                services: { title: "Meine Expertise", geo_title: "Wohnraum-Geobiologie", geo_desc: "Ich verwandle Ihr Zuhause in einen Ort der Erholung. Analyse tellurischer Netze und Reinigung von Speicherungen.", heal_title: "Energiebehandlungen", heal_desc: "Ich löse emotionale Blockaden und revitalisiere Ihren feinstofflichen Körper. Sitzungen in der Praxis oder aus der Ferne.", shop_title: "Schwingungskreationen", shop_desc: "Meine einzigartigen und dynamisierten Objekte, um eine hohe Schwingung in Ihrem Zuhause oder am Arbeitsplatz aufrechtzuerhalten." },
+                gallery: { title: "Kunstgalerie", subtitle: "Kunst als Medium der Heilung und Verbindung zu feinstofflichen Welten.", item1: "Mandala der Intuition", item2: "Tierverbindung", item3: "Wasserritual", item4: "Inneres Licht", item5: "Naturvision" },
+                about: { title: "Ihr Partner für Wohlbefinden", desc1: "Leidenschaftlich für die Dynamik des Lebendigen und die feinstofflichen Welten begleite ich seit über 15 Jahren Privatpersonen und Unternehmen.", desc2: "Mein Ansatz ist ganzheitlich: Ich behandle kein Symptom, sondern betrachte die Person in ihrer Gesamtheit und in ihrer Interaktion mit ihrer Umgebung.", stats_exp: "Jahre Erfahrung", stats_loc: "Romandie" },
+                contact: { title: "Kontaktieren Sie Rikunali", form_name: "Ihr Name", form_email: "Ihre E-Mail", form_msg: "Ihre Nachricht", btn: "Senden", success: "Danke! Ihre Nachricht wurde gesendet.", info: "Ich bin in der gesamten Romandie tätig." },
+                cookies: { text: "Diese Website verwendet Cookies, um eine optimale Erfahrung zu gewährleisten.", accept: "Akzeptieren", decline: "Ablehnen" },
+                popup: { title: "Entdeckungsangebot", text: "Profitieren Sie von einer ersten kostenlosen 15-minütigen telefonischen Beratung.", btn: "Profitieren", close: "Nein danke" }
             },
             en: {
                 nav: { home: "Home", geo: "Geobiology", healing: "Healing", gallery: "Gallery", shop: "Creations", about: "About", contact: "Contact" },
-                hero: {
-                    title: "Geobiology and Energy Healing in Western Switzerland",
-                    subtitle: "Harmonize your living space and regain your vitality. Interventions in Lausanne, Geneva, Vaud and remotely.",
-                    cta: "Request a free diagnosis"
-                },
-                services: {
-                    title: "My Expertise",
-                    geo_title: "Habitat Geobiology",
-                    geo_desc: "I transform your home into a place of rejuvenation. Analysis of telluric networks and purification of memories.",
-                    heal_title: "Energy Healing",
-                    heal_desc: "I release emotional blockages and revitalize your subtle bodies. Sessions in person or remotely.",
-                    shop_title: "Vibrational Creations",
-                    shop_desc: "My unique and energized objects to maintain high vibration at home or in your workplace."
-                },
-                gallery: {
-                    title: "Art Gallery",
-                    subtitle: "Art as a vehicle for healing and connection to subtle worlds.",
-                    item1: "Mandala of Intuition",
-                    item2: "Animal Connection",
-                    item3: "Water Ritual",
-                    item4: "Inner Light",
-                    item5: "Nature Vision"
-                },
-                about: {
-                    title: "Your Wellness Partner",
-                    desc1: "Passionate about the dynamics of life and subtle worlds, I have been accompanying individuals and companies for over 15 years.",
-                    desc2: "My approach is holistic: I do not treat a symptom, I consider the person as a whole and in their interaction with their environment.",
-                    stats_exp: "Years Experience",
-                    stats_loc: "Western Switzerland"
-                },
-                contact: {
-                    title: "Contact Rikunali",
-                    form_name: "Your Name",
-                    form_email: "Your Email",
-                    form_msg: "Your Message",
-                    btn: "Send",
-                    success: "Thank you! Your message has been sent.",
-                    info: "I operate throughout Western Switzerland."
-                },
-                cookies: {
-                    text: "This site uses cookies to ensure an optimal experience.",
-                    accept: "Accept",
-                    decline: "Decline"
-                },
-                popup: {
-                    title: "Discovery Offer",
-                    text: "Enjoy a first free 15-minute phone consultation to define your needs.",
-                    btn: "Get it now",
-                    close: "No thanks"
-                }
+                hero: { title: "Geobiology and Energy Healing in Western Switzerland", subtitle: "Harmonize your living space and regain your vitality. Interventions in Lausanne, Geneva, Vaud and remotely.", cta: "Request a free diagnosis" },
+                services: { title: "My Expertise", geo_title: "Habitat Geobiology", geo_desc: "I transform your home into a place of rejuvenation. Analysis of telluric networks and purification of memories.", heal_title: "Energy Healing", heal_desc: "I release emotional blockages and revitalize your subtle bodies. Sessions in person or remotely.", shop_title: "Vibrational Creations", shop_desc: "My unique and energized objects to maintain high vibration at home or in your workplace." },
+                gallery: { title: "Art Gallery", subtitle: "Art as a vehicle for healing and connection to subtle worlds.", item1: "Mandala of Intuition", item2: "Animal Connection", item3: "Water Ritual", item4: "Inner Light", item5: "Nature Vision" },
+                about: { title: "Your Wellness Partner", desc1: "Passionate about the dynamics of life and subtle worlds, I have been accompanying individuals and companies for over 15 years.", desc2: "My approach is holistic: I do not treat a symptom, I consider the person as a whole and in their interaction with their environment.", stats_exp: "Years Experience", stats_loc: "Western Switzerland" },
+                contact: { title: "Contact Rikunali", form_name: "Your Name", form_email: "Your Email", form_msg: "Your Message", btn: "Send", success: "Thank you! Your message has been sent.", info: "I operate throughout Western Switzerland." },
+                cookies: { text: "This site uses cookies to ensure an optimal experience.", accept: "Accept", decline: "Decline" },
+                popup: { title: "Discovery Offer", text: "Enjoy a first free 15-minute phone consultation to define your needs.", btn: "Get it now", close: "No thanks" }
             },
             it: {
                 nav: { home: "Home", geo: "Geobiologia", healing: "Cure", gallery: "Galleria", shop: "Creazioni", about: "Chi Sono", contact: "Contatti" },
-                hero: {
-                    title: "Geobiologia e Cure Energetiche nella Svizzera Romanda",
-                    subtitle: "Armonizza il tuo spazio vitale e ritrova la tua vitalità. Interventi a Losanna, Ginevra, Vaud e a distanza.",
-                    cta: "Richiedi una diagnosi gratuita"
-                },
-                services: {
-                    title: "Le Mie Competenze",
-                    geo_title: "Geobiologia dell'Habitat",
-                    geo_desc: "Trasformo la tua casa in un luogo di rigenerazione. Analisi delle reti telluriche e purificazione delle memorie.",
-                    heal_title: "Cure Energetiche",
-                    heal_desc: "Libero i tuoi blocchi emotivi e rivitalizzo i tuoi corpi sottili. Sedute in studio o a distanza.",
-                    shop_title: "Creazioni Vibrazionali",
-                    shop_desc: "I miei oggetti unici e dinamizzati per mantenere un'alta vibrazione a casa o sul posto di lavoro."
-                },
-                gallery: {
-                    title: "Galleria d'Arte",
-                    subtitle: "L'arte come veicolo di guarigione e connessione ai mondi sottili.",
-                    item1: "Mandala dell'Intuizione",
-                    item2: "Connessione Animale",
-                    item3: "Rituale dell'Acqua",
-                    item4: "Luce Interiore",
-                    item5: "Visione della Natura"
-                },
-                about: {
-                    title: "Il Tuo Partner per il Benessere",
-                    desc1: "Appassionata delle dinamiche della vita e dei mondi sottili, accompagno privati e aziende da oltre 15 anni.",
-                    desc2: "Il mio approccio è olistico: non tratto un sintomo, considero la persona nella sua interezza e nella sua interazione con l'ambiente.",
-                    stats_exp: "Anni di esperienza",
-                    stats_loc: "Svizzera Romanda"
-                },
-                contact: {
-                    title: "Contatta Rikunali",
-                    form_name: "Il Tuo Nome",
-                    form_email: "La Tua Email",
-                    form_msg: "Il Tuo Messaggio",
-                    btn: "Inviare",
-                    success: "Grazie! Il tuo messaggio è stato inviato.",
-                    info: "Intervengo in tutta la Svizzera Romanda."
-                },
-                cookies: {
-                    text: "Questo sito utilizza i cookie per garantire un'esperienza ottimale.",
-                    accept: "Accettare",
-                    decline: "Rifiutare"
-                },
-                popup: {
-                    title: "Offerta Scoperta",
-                    text: "Approfitta di una prima consulenza telefonica di 15 minuti gratuita.",
-                    btn: "Approfittane",
-                    close: "No grazie"
-                }
+                hero: { title: "Geobiologia e Cure Energetiche nella Svizzera Romanda", subtitle: "Armonizza il tuo spazio vitale e ritrova la tua vitalità. Interventi a Losanna, Ginevra, Vaud e a distanza.", cta: "Richiedi una diagnosi gratuita" },
+                services: { title: "Le Mie Competenze", geo_title: "Geobiologia dell'Habitat", geo_desc: "Trasformo la tua casa in un luogo di rigenerazione. Analisi delle reti telluriche e purificazione delle memorie.", heal_title: "Cure Energetiche", heal_desc: "Libero i tuoi blocchi emotivi e rivitalizzo i tuoi corpi sottili. Sedute in studio o a distanza.", shop_title: "Creazioni Vibrazionali", shop_desc: "I miei oggetti unici e dinamizzati per mantenere un'alta vibrazione a casa o sul posto di lavoro." },
+                gallery: { title: "Galleria d'Arte", subtitle: "L'arte come veicolo di guarigione e connessione ai mondi sottili.", item1: "Mandala dell'Intuizione", item2: "Connessione Animale", item3: "Rituale dell'Acqua", item4: "Luce Interiore", item5: "Visione della Natura" },
+                about: { title: "Il Tuo Partner per il Benessere", desc1: "Appassionata delle dinamiche della vita e dei mondi sottili, accompagno privati e aziende da oltre 15 anni.", desc2: "Il mio approccio è olistico: non tratto un sintomo, considero la persona nella sua interezza e nella sua interazione con l'ambiente.", stats_exp: "Anni di esperienza", stats_loc: "Svizzera Romanda" },
+                contact: { title: "Contatta Rikunali", form_name: "Il Tuo Nome", form_email: "La Tua Email", form_msg: "Il Tuo Messaggio", btn: "Inviare", success: "Grazie! Il tuo messaggio è stato inviato.", info: "Intervengo in tutta la Svizzera Romanda." },
+                cookies: { text: "Questo sito utilizza i cookie per garantire un'esperienza ottimale.", accept: "Accettare", decline: "Rifiutare" },
+                popup: { title: "Offerta Scoperta", text: "Approfitta di una prima consulenza telefonica di 15 minuti gratuita.", btn: "Approfittane", close: "No grazie" }
             },
             es: {
                 nav: { home: "Inicio", geo: "Geobiología", healing: "Sanación", gallery: "Galería", shop: "Creaciones", about: "Sobre mí", contact: "Contacto" },
-                hero: {
-                    title: "Geobiología y Sanación Energética en Suiza Romanda",
-                    subtitle: "Armoniza tu espacio vital y recupera tu vitalidad. Intervenciones en Lausana, Ginebra, Vaud y a distancia.",
-                    cta: "Solicitar un diagnóstico gratuito"
-                },
-                services: {
-                    title: "Mi Experiencia",
-                    geo_title: "Geobiología del Hábitat",
-                    geo_desc: "Transformo tu hogar en un lugar de rejuvenecimiento. Análisis de redes telúricas y purificación de memorias.",
-                    heal_title: "Sanación Energética",
-                    heal_desc: "Libero tus bloqueos emocionales y revitalizo tus cuerpos sutiles. Sesiones presenciales o a distancia.",
-                    shop_title: "Creaciones Vibratorias",
-                    shop_desc: "Mis objetos únicos y dinamizados para mantener una alta vibración en casa o en tu lugar de trabajo."
-                },
-                gallery: {
-                    title: "Galería de Arte",
-                    subtitle: "El arte como vehículo de sanación y conexión con los mundos sutiles.",
-                    item1: "Mandala de la Intuición",
-                    item2: "Conexión Animal",
-                    item3: "Ritual del Agua",
-                    item4: "Luz Interior",
-                    item5: "Visión de la Naturaleza"
-                },
-                about: {
-                    title: "Tu Socio de Bienestar",
-                    desc1: "Apasionada por las dinámicas de la vida y los mundos sutiles, acompaño a particulares y empresas desde hace más de 15 años.",
-                    desc2: "Mi enfoque es holístico: no trato un síntoma, considero a la persona en su totalidad y en su interacción con su entorno.",
-                    stats_exp: "Años de experiencia",
-                    stats_loc: "Suiza Romanda"
-                },
-                contact: {
-                    title: "Contactar a Rikunali",
-                    form_name: "Tu Nombre",
-                    form_email: "Tu Email",
-                    form_msg: "Tu Mensaje",
-                    btn: "Enviar",
-                    success: "¡Gracias! Tu mensaje ha sido enviado.",
-                    info: "Intervengo en toda la Suiza Romanda."
-                },
-                cookies: {
-                    text: "Este sitio utiliza cookies para garantizar una experiencia óptima.",
-                    accept: "Aceptar",
-                    decline: "Rechazar"
-                },
-                popup: {
-                    title: "Oferta de Descubrimiento",
-                    text: "Aprovecha una primera consulta telefónica de 15 minutos gratuita.",
-                    btn: "Aprovechar",
-                    close: "No gracias"
-                }
+                hero: { title: "Geobiología y Sanación Energética en Suiza Romanda", subtitle: "Armoniza tu espacio vital y recupera tu vitalidad. Intervenciones en Lausana, Ginebra, Vaud y a distancia.", cta: "Solicitar un diagnóstico gratuito" },
+                services: { title: "Mi Experiencia", geo_title: "Geobiología del Hábitat", geo_desc: "Transformo tu hogar en un lugar de rejuvenecimiento. Análisis de redes telúricas y purificación de memorias.", heal_title: "Sanación Energética", heal_desc: "Libero tus bloqueos emocionales y revitalizo tus cuerpos sutiles. Sesiones presenciales o a distancia.", shop_title: "Creaciones Vibratorias", shop_desc: "Mis objetos únicos y dinamizados para mantener una alta vibración en casa o en tu lugar de trabajo." },
+                gallery: { title: "Galería de Arte", subtitle: "El arte como vehículo de sanación y conexión con los mundos sutiles.", item1: "Mandala de la Intuición", item2: "Conexión Animal", item3: "Ritual del Agua", item4: "Luz Interior", item5: "Visión de la Naturaleza" },
+                about: { title: "Tu Socio de Bienestar", desc1: "Apasionada por las dinámicas de la vida y los mundos sutiles, acompaño a particulares y empresas desde hace más de 15 años.", desc2: "Mi enfoque es holístico: no trato un síntoma, considero a la persona en su totalidad y en su interacción con su entorno.", stats_exp: "Años de experiencia", stats_loc: "Suiza Romanda" },
+                contact: { title: "Contactar a Rikunali", form_name: "Tu Nombre", form_email: "Tu Email", form_msg: "Tu Mensaje", btn: "Enviar", success: "¡Gracias! Tu mensaje ha sido enviado.", info: "Intervengo en toda la Suiza Romanda." },
+                cookies: { text: "Este sitio utiliza cookies para garantizar una experiencia óptima.", accept: "Aceptar", decline: "Rechazar" },
+                popup: { title: "Oferta de Descubrimiento", text: "Aprovecha una primera consulta telefónica de 15 minutos gratuita.", btn: "Aprovechar", close: "No gracias" }
             }
         };
 
-        // --- COMPOSANTS AUXILIAIRES ---
+        // ------------------------------------------------------------------
+        // 2. GÉNÉRATION DU HTML STATIQUE (injection dans #app)
+        // ------------------------------------------------------------------
+        let currentLang = 'fr';
+        let showPromoPopup = false;
+        let selectedImage = null;
 
-        const LanguageSwitcher = ({ currentLang, setLang }) => {
+        // Helper pour créer des icônes Lucide (après rendu)
+        function initLucide() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        // Rendu complet du site en fonction de la langue
+        function render() {
+            const t = content[currentLang];
+            const app = document.getElementById('app');
+            if (!app) return;
+
+            app.innerHTML = `
+                <!-- Floating Controls -->
+                <div class="fixed bottom-6 right-6 z-40 flex flex-col items-end space-y-3" id="floating-controls">
+                    <a href="https://wa.me/41765483217" target="_blank" rel="noopener noreferrer" class="float-btn w-12 h-12 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl" aria-label="WhatsApp">
+                        <i data-lucide="message-circle" width="24" height="24"></i>
+                    </a>
+                    <a href="tel:+41765483217" class="float-btn w-12 h-12 bg-emerald-700 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl" aria-label="Téléphone">
+                        <i data-lucide="phone" width="24" height="24"></i>
+                    </a>
+                    <button id="back-to-top" class="float-btn w-12 h-12 bg-stone-800 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl opacity-0 transition-opacity duration-300" aria-label="Haut de page">
+                        <i data-lucide="arrow-up" width="24" height="24"></i>
+                    </button>
+                </div>
+
+                <!-- Cookie Banner -->
+                <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-stone-900 text-white p-4 z-50 shadow-lg border-t border-stone-700 flex flex-col md:flex-row items-center justify-between gap-4 fade-in" style="display: none;">
+                    <div class="text-sm md:text-base text-center md:text-left max-w-2xl">${t.cookies.text}</div>
+                    <div class="flex space-x-4">
+                        <button id="decline-cookies" class="text-sm text-stone-400 hover:text-white transition underline">${t.cookies.decline}</button>
+                        <button id="accept-cookies" class="bg-emerald-700 hover:bg-emerald-600 text-white px-6 py-2 rounded-full text-sm font-semibold transition">${t.cookies.accept}</button>
+                    </div>
+                </div>
+
+                <!-- Promo Popup -->
+                <div id="promo-popup" class="fixed inset-0 z-[70] flex items-center justify-center p-4 fade-in" style="display: none;">
+                    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="popup-overlay"></div>
+                    <div class="relative bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center border-t-4 border-emerald-600 transform transition-all scale-100">
+                        <button id="close-popup" class="absolute top-4 right-4 text-stone-400 hover:text-stone-600">
+                            <i data-lucide="x" width="24" height="24"></i>
+                        </button>
+                        <div class="mb-6 text-emerald-700 flex justify-center"><i data-lucide="gift" width="48" height="48"></i></div>
+                        <h3 class="text-2xl font-serif font-bold text-stone-800 mb-3">${t.popup.title}</h3>
+                        <p class="text-stone-600 mb-8 leading-relaxed">${t.popup.text}</p>
+                        <a href="#contact" id="popup-cta" class="block w-full bg-emerald-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-emerald-800 transition shadow-md transform hover:scale-[1.02]">${t.popup.btn}</a>
+                        <button id="popup-close-btn" class="mt-4 text-sm text-stone-400 hover:text-stone-600 underline">${t.popup.close}</button>
+                    </div>
+                </div>
+
+                <!-- Lightbox -->
+                <div id="lightbox" class="fixed inset-0 z-[60] lightbox-overlay flex items-center justify-center p-4 fade-in" style="display: none;">
+                    <button id="close-lightbox" class="absolute top-4 right-4 text-white hover:text-emerald-400 transition"><i data-lucide="x" width="40" height="40"></i></button>
+                    <img id="lightbox-img" class="max-h-[90vh] max-w-[90vw] object-contain rounded shadow-2xl" alt="">
+                    <div id="lightbox-caption" class="absolute bottom-8 text-white bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm"></div>
+                </div>
+
+                <!-- HEADER -->
+                <header class="fixed w-full z-50 transition-all duration-300 bg-transparent py-4" id="main-header">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="flex justify-between items-center h-20">
+                            <div class="flex-shrink-0 flex items-center cursor-pointer h-full py-1" id="logo-home">
+                                <img src="assets/logo-rikunali.webp" alt="Rikunali Logo" class="h-full w-auto max-h-16 object-contain" onerror="this.style.display='none'; this.nextSibling.style.display='block'">
+                                <span class="font-serif text-2xl font-bold text-emerald-800 tracking-wider hidden pl-2">Rikunali</span>
+                            </div>
+                            <nav class="hidden md:flex space-x-6 items-center">
+                                <a href="#services" class="font-medium hover:text-emerald-700 transition text-stone-100 hover:text-white drop-shadow-md" data-i18n-nav-geo>${t.nav.geo}</a>
+                                <a href="#services" class="font-medium hover:text-emerald-700 transition text-stone-100 hover:text-white drop-shadow-md" data-i18n-nav-healing>${t.nav.healing}</a>
+                                <a href="#gallery" class="font-medium hover:text-emerald-700 transition text-stone-100 hover:text-white drop-shadow-md" data-i18n-nav-gallery>${t.nav.gallery}</a>
+                                <a href="#shop" class="font-medium hover:text-emerald-700 transition text-stone-100 hover:text-white drop-shadow-md" data-i18n-nav-shop>${t.nav.shop}</a>
+                                <a href="#about" class="font-medium hover:text-emerald-700 transition text-stone-100 hover:text-white drop-shadow-md" data-i18n-nav-about>${t.nav.about}</a>
+                                <a href="#contact" class="px-5 py-2 bg-emerald-700 text-white rounded-full hover:bg-emerald-800 transition shadow-lg text-sm font-semibold tracking-wide" data-i18n-nav-contact>${t.nav.contact}</a>
+                                <div class="border-l border-stone-400 pl-4" id="language-switcher-desktop"></div>
+                            </nav>
+                            <div class="md:hidden flex items-center space-x-4">
+                                <div class="bg-white/80 rounded px-1" id="language-switcher-mobile"></div>
+                                <button id="menu-toggle" class="hover:text-emerald-700 text-white" aria-label="Menu">
+                                    <i data-lucide="menu" width="28" height="28"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="mobile-menu" class="md:hidden hidden bg-white/95 backdrop-blur border-t border-stone-100 absolute w-full shadow-xl h-screen">
+                        <div class="px-4 pt-4 pb-6 space-y-4 flex flex-col items-center mt-10">
+                            <a href="#services" class="block px-3 py-2 text-2xl text-stone-600 hover:text-emerald-800" data-i18n-nav-geo>${t.nav.geo}</a>
+                            <a href="#services" class="block px-3 py-2 text-2xl text-stone-600 hover:text-emerald-800" data-i18n-nav-healing>${t.nav.healing}</a>
+                            <a href="#gallery" class="block px-3 py-2 text-2xl text-stone-600 hover:text-emerald-800" data-i18n-nav-gallery>${t.nav.gallery}</a>
+                            <a href="#shop" class="block px-3 py-2 text-2xl text-stone-600 hover:text-emerald-800" data-i18n-nav-shop>${t.nav.shop}</a>
+                            <a href="#about" class="block px-3 py-2 text-2xl text-stone-600 hover:text-emerald-800" data-i18n-nav-about>${t.nav.about}</a>
+                            <a href="#contact" class="block px-6 py-3 text-white font-bold bg-emerald-700 rounded-full mt-4" data-i18n-nav-contact>${t.nav.contact}</a>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- HERO -->
+                <section class="relative h-screen flex items-center justify-center text-center overflow-hidden">
+                    <video id="hero-video" autoplay muted loop playsinline poster="assets/rikunali-portrait.webp" class="absolute inset-0 w-full h-full object-cover z-0" preload="metadata">
+                        <source src="assets/rikunali-geobiologie-soins-energetiques-suisse.mp4" type="video/mp4">
+                    </video>
+                    <div class="absolute inset-0 video-overlay z-10"></div>
+                    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 z-20 pt-20">
+                        <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-8 leading-tight fade-in drop-shadow-lg" data-i18n-hero-title>${t.hero.title}</h1>
+                        <p class="text-xl md:text-2xl text-stone-100 mb-10 max-w-3xl mx-auto font-light drop-shadow-md" data-i18n-hero-subtitle>${t.hero.subtitle}</p>
+                        <a href="#contact" class="inline-block bg-white/10 backdrop-blur-sm border border-white/50 hover:bg-white hover:text-emerald-900 text-white font-semibold py-4 px-10 rounded-full transition duration-300 transform hover:scale-105" data-i18n-hero-cta>${t.hero.cta}</a>
+                    </div>
+                    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 text-white animate-bounce cursor-pointer" id="scroll-down">
+                        <i data-lucide="chevron-down" width="32" height="32"></i>
+                    </div>
+                </section>
+
+                <!-- SERVICES -->
+                <section id="services" class="py-24 bg-stone-50 relative z-30">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center mb-20">
+                            <span class="text-emerald-700 text-sm font-bold tracking-widest uppercase mb-2 block" data-i18n-services-subtitle>Domaines d'intervention</span>
+                            <h2 class="text-4xl md:text-5xl font-serif text-stone-800" data-i18n-services-title>${t.services.title}</h2>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <article class="group bg-white p-10 rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                                <div class="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-800 mb-6 group-hover:bg-emerald-800 group-hover:text-white transition-colors duration-300"><i data-lucide="home" width="32" height="32"></i></div>
+                                <h3 class="text-2xl font-serif font-bold mb-4 text-stone-800" data-i18n-geo-title>${t.services.geo_title}</h3>
+                                <p class="text-stone-600 leading-relaxed mb-6" data-i18n-geo-desc>${t.services.geo_desc}</p>
+                                <a href="#contact" class="text-emerald-700 font-semibold hover:text-emerald-900 flex items-center">En savoir plus <i data-lucide="arrow-right" width="16" height="16" class="ml-2"></i></a>
+                            </article>
+                            <article class="group bg-white p-10 rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                                <div class="w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center text-amber-700 mb-6 group-hover:bg-amber-600 group-hover:text-white transition-colors duration-300"><i data-lucide="sun" width="32" height="32"></i></div>
+                                <h3 class="text-2xl font-serif font-bold mb-4 text-stone-800" data-i18n-heal-title>${t.services.heal_title}</h3>
+                                <p class="text-stone-600 leading-relaxed mb-6" data-i18n-heal-desc>${t.services.heal_desc}</p>
+                                <a href="#contact" class="text-amber-700 font-semibold hover:text-amber-900 flex items-center">En savoir plus <i data-lucide="arrow-right" width="16" height="16" class="ml-2"></i></a>
+                            </article>
+                            <article class="group bg-white p-10 rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" id="shop">
+                                <div class="w-16 h-16 bg-stone-100 rounded-full flex items-center justify-center text-stone-600 mb-6 group-hover:bg-stone-600 group-hover:text-white transition-colors duration-300"><i data-lucide="gem" width="32" height="32"></i></div>
+                                <h3 class="text-2xl font-serif font-bold mb-4 text-stone-800" data-i18n-shop-title>${t.services.shop_title}</h3>
+                                <p class="text-stone-600 leading-relaxed mb-6" data-i18n-shop-desc>${t.services.shop_desc}</p>
+                                <span class="text-stone-500 text-sm italic border-b border-stone-200 pb-1">Bientôt disponible en ligne</span>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- GALERIE -->
+                <section id="gallery" class="py-24 bg-stone-100">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center mb-16">
+                            <span class="text-emerald-700 text-sm font-bold tracking-widest uppercase mb-2 block" data-i18n-gallery-subtitle>L'Art Vibratoire</span>
+                            <h2 class="text-4xl md:text-5xl font-serif text-stone-800 mb-4" data-i18n-gallery-title>${t.gallery.title}</h2>
+                            <p class="text-stone-600 max-w-2xl mx-auto" data-i18n-gallery-subtitle2>${t.gallery.subtitle}</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            ${generateGalleryItems(t)}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PARALLAX -->
+                <div class="relative h-96 bg-fixed bg-center bg-cover bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1518531933037-9a60aa2071a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+                    <div class="absolute inset-0 bg-emerald-900/40 flex items-center justify-center">
+                        <p class="text-white text-3xl md:text-4xl font-serif italic text-center px-4 max-w-4xl">"L'invisible est la racine du visible."</p>
+                    </div>
+                </div>
+
+                <!-- ABOUT -->
+                <section id="about" class="py-24 bg-white">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="flex flex-col lg:flex-row items-center gap-16">
+                            <div class="lg:w-1/2 relative">
+                                <div class="absolute -top-4 -left-4 w-24 h-24 bg-stone-100 rounded-full z-0"></div>
+                                <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-emerald-50 rounded-full z-0"></div>
+                                <div class="relative z-10 rounded-xl overflow-hidden shadow-2xl h-[600px] w-full group">
+                                    <img src="assets/rikunali-portrait.webp" alt="Rikunali Portrait" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                    <div class="absolute bottom-4 right-4 bg-white/90 p-2 rounded-lg shadow-lg backdrop-blur-sm">
+                                        <img src="assets/rikunali-logo-carre.webp" alt="Sceau Rikunali" loading="lazy" class="w-20 h-20 object-contain opacity-90">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lg:w-1/2">
+                                <h2 class="text-4xl md:text-5xl font-serif font-bold text-stone-800 mb-8" data-i18n-about-title>${t.about.title}</h2>
+                                <p class="text-lg text-stone-600 mb-6 leading-relaxed" data-i18n-about-desc1>${t.about.desc1}</p>
+                                <p class="text-lg text-stone-600 mb-10 leading-relaxed font-light" data-i18n-about-desc2>${t.about.desc2}</p>
+                                <div class="grid grid-cols-2 gap-8 border-t border-stone-100 pt-8">
+                                    <div><span class="text-4xl font-bold text-emerald-800 block mb-1">15+</span><span class="text-sm text-stone-500 uppercase tracking-wide" data-i18n-about-stats-exp>${t.about.stats_exp}</span></div>
+                                    <div><div class="text-4xl font-bold text-emerald-800 block mb-1"><i data-lucide="map-pin" width="36" height="36" class="inline-block"></i></div><span class="text-sm text-stone-500 uppercase tracking-wide" data-i18n-about-stats-loc>${t.about.stats_loc}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CONTACT -->
+                <section id="contact" class="py-24 bg-stone-100">
+                    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row">
+                            <div class="md:w-5/12 bg-emerald-800 p-10 text-white flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-2xl font-serif mb-6">Contact</h3>
+                                    <p class="text-emerald-100 mb-8 leading-relaxed">Rikunali<br/>Les Murmures du Silence</p>
+                                    <div class="space-y-4">
+                                        <div class="flex items-center space-x-3 text-emerald-100"><i data-lucide="phone" width="20" height="20"></i><a href="tel:+41765483217" class="hover:text-white transition">076 548 32 17</a></div>
+                                        <div class="flex items-center space-x-3 text-emerald-100"><i data-lucide="mail" width="20" height="20"></i><a href="mailto:esprit@rikunali.ch" class="hover:text-white transition">esprit@rikunali.ch</a></div>
+                                        <div class="flex items-center space-x-3 text-emerald-100"><i data-lucide="map-pin" width="20" height="20"></i><span>Suisse Romande</span></div>
+                                    </div>
+                                </div>
+                                <div class="mt-12 flex space-x-4">
+                                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-emerald-700 flex items-center justify-center hover:bg-emerald-600 transition" aria-label="Instagram"><i data-lucide="instagram" width="20" height="20"></i></a>
+                                    <a href="#" target="_blank" class="w-10 h-10 rounded-full bg-emerald-700 flex items-center justify-center hover:bg-emerald-600 transition" aria-label="Facebook"><i data-lucide="facebook" width="20" height="20"></i></a>
+                                </div>
+                            </div>
+                            <div class="md:w-7/12 p-10">
+                                <h2 class="text-3xl font-serif font-bold text-stone-800 mb-2" data-i18n-contact-title>${t.contact.title}</h2>
+                                <p class="text-stone-500 mb-8 text-sm" data-i18n-contact-info>${t.contact.info}</p>
+                                <form id="contact-form" class="space-y-5" action="https://formspree.io/f/xxxxx" method="POST">
+                                    <input type="hidden" name="_language" value="${currentLang}">
+                                    <div>
+                                        <label class="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2" data-i18n-contact-name>${t.contact.form_name}</label>
+                                        <input type="text" name="name" required minlength="2" class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:bg-white outline-none transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2" data-i18n-contact-email>${t.contact.form_email}</label>
+                                        <input type="email" name="email" required class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:bg-white outline-none transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2" data-i18n-contact-msg>${t.contact.form_msg}</label>
+                                        <textarea name="message" required rows="4" class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:bg-white outline-none transition"></textarea>
+                                    </div>
+                                    <button type="submit" class="w-full font-bold py-4 px-6 rounded-lg transition transform hover:-translate-y-1 shadow-lg bg-stone-800 text-white hover:bg-stone-900 flex items-center justify-center" data-i18n-contact-btn>${t.contact.btn}</button>
+                                    <div id="form-status" class="text-center text-sm mt-2 hidden"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <footer class="bg-stone-900 text-stone-400 py-12 border-t border-stone-800">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+                        <div class="text-center md:text-left"><span class="text-2xl font-serif font-bold text-white tracking-wider">Rikunali</span><p class="text-xs mt-2 text-stone-500">© 2025 Rikunali. Tous droits réservés.</p></div>
+                        <div class="flex space-x-8 text-sm font-medium"><a href="#" class="hover:text-white transition">Mentions Légales</a><a href="#" class="hover:text-white transition">Confidentialité</a><a href="#" class="hover:text-white transition">CGV</a></div>
+                    </div>
+                </footer>
+            `;
+            initLucide();
+            attachEventListeners();
+            updateLanguageSwitcher();
+            handleScrollHeader();
+            handleBackToTop();
+            handleCookieBanner();
+            handlePopup();
+            handleLightbox();
+            handleContactForm();
+        }
+
+        // Génération des éléments de galerie (évite duplication)
+        function generateGalleryItems(t) {
+            const images = [
+                { src: 'assets/oeuvre-mandala-bleu.webp', alt: t.gallery.item1, class: 'aspect-square' },
+                { src: 'assets/oeuvre-portrait-tribal.webp', alt: t.gallery.item2, class: 'aspect-[3/4] md:row-span-2' },
+                { src: 'assets/oeuvre-fresque-amazonie.webp', alt: t.gallery.item3, class: 'aspect-square' },
+                { src: 'assets/oeuvre-lumiere-interieure.webp', alt: t.gallery.item4, class: 'aspect-[3/4] md:row-span-2 lg:col-start-3 lg:row-start-1' },
+                { src: 'assets/oeuvre-vision-nature.webp', alt: t.gallery.item5, class: 'aspect-square lg:col-start-1' }
+            ];
+            return images.map(img => `
+                <div class="gallery-item relative group overflow-hidden rounded-xl shadow-lg ${img.class} cursor-zoom-in" data-src="${img.src}" data-alt="${img.alt}">
+                    <img src="${img.src}" alt="${img.alt}" loading="lazy" class="gallery-img w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-white font-serif text-xl">${img.alt}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Gestion des événements (lightbox, popup, cookies, etc.)
+        function attachEventListeners() {
+            // Scroll down button
+            const scrollDown = document.getElementById('scroll-down');
+            if (scrollDown) scrollDown.onclick = () => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+            // Logo home click
+            const logo = document.getElementById('logo-home');
+            if (logo) logo.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuToggle && mobileMenu) {
+                menuToggle.onclick = () => {
+                    const isOpen = mobileMenu.classList.contains('hidden');
+                    mobileMenu.classList.toggle('hidden', !isOpen);
+                    menuToggle.innerHTML = isOpen ? '<i data-lucide="x" width="28" height="28"></i>' : '<i data-lucide="menu" width="28" height="28"></i>';
+                    initLucide();
+                };
+            }
+            // Lightbox triggers
+            document.querySelectorAll('.gallery-item').forEach(el => {
+                el.onclick = (e) => {
+                    const src = el.dataset.src;
+                    const alt = el.dataset.alt;
+                    if (src) openLightbox(src, alt);
+                };
+            });
+        }
+
+        function openLightbox(src, alt) {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const caption = document.getElementById('lightbox-caption');
+            if (lb && img && caption) {
+                img.src = src;
+                caption.textContent = alt;
+                lb.style.display = 'flex';
+                initLucide();
+            }
+        }
+
+        function handleLightbox() {
+            const lb = document.getElementById('lightbox');
+            const closeBtn = document.getElementById('close-lightbox');
+            if (closeBtn) closeBtn.onclick = () => { if (lb) lb.style.display = 'none'; };
+            if (lb) lb.onclick = (e) => { if (e.target === lb) lb.style.display = 'none'; };
+        }
+
+        function handlePopup() {
+            const popup = document.getElementById('promo-popup');
+            if (!popup) return;
+            const hasSeen = sessionStorage.getItem('rikunali-promo-popup');
+            if (!hasSeen) {
+                setTimeout(() => { popup.style.display = 'flex'; }, 5000);
+            }
+            const closePopup = () => {
+                popup.style.display = 'none';
+                sessionStorage.setItem('rikunali-promo-popup', 'true');
+            };
+            document.getElementById('close-popup')?.addEventListener('click', closePopup);
+            document.getElementById('popup-close-btn')?.addEventListener('click', closePopup);
+            document.getElementById('popup-overlay')?.addEventListener('click', closePopup);
+            document.getElementById('popup-cta')?.addEventListener('click', closePopup);
+        }
+
+        function handleCookieBanner() {
+            const banner = document.getElementById('cookie-banner');
+            if (!banner) return;
+            const consent = localStorage.getItem('rikunali-cookie-consent');
+            if (!consent) banner.style.display = 'flex';
+            const accept = document.getElementById('accept-cookies');
+            const decline = document.getElementById('decline-cookies');
+            if (accept) accept.onclick = () => { localStorage.setItem('rikunali-cookie-consent', 'accepted'); banner.style.display = 'none'; };
+            if (decline) decline.onclick = () => { localStorage.setItem('rikunali-cookie-consent', 'declined'); banner.style.display = 'none'; };
+        }
+
+        function handleScrollHeader() {
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('main-header');
+                const scrolled = window.scrollY > 50;
+                if (header) {
+                    header.classList.toggle('glass-nav', scrolled);
+                    header.classList.toggle('bg-transparent', !scrolled);
+                    header.classList.toggle('py-2', scrolled);
+                    header.classList.toggle('py-4', !scrolled);
+                }
+                const backBtn = document.getElementById('back-to-top');
+                if (backBtn) {
+                    if (window.scrollY > 400) backBtn.classList.remove('opacity-0');
+                    else backBtn.classList.add('opacity-0');
+                }
+            });
+        }
+
+        function handleBackToTop() {
+            const btn = document.getElementById('back-to-top');
+            if (btn) btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleContactForm() {
+            const form = document.getElementById('contact-form');
+            if (!form) return;
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(form);
+                const statusDiv = document.getElementById('form-status');
+                const submitBtn = form.querySelector('button[type="submit"]');
+                if (statusDiv) statusDiv.classList.add('hidden');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i data-lucide="loader" class="animate-spin mr-2" width="20" height="20"></i> Envoi...';
+                initLucide();
+                try {
+                    // Utilisation de Formspree (remplacer xxxxx par ton ID)
+                    const response = await fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+                    if (response.ok) {
+                        statusDiv.textContent = content[currentLang].contact.success;
+                        statusDiv.classList.remove('hidden', 'text-red-600');
+                        statusDiv.classList.add('text-green-600', 'block');
+                        form.reset();
+                    } else {
+                        throw new Error('Erreur');
+                    }
+                } catch (err) {
+                    statusDiv.textContent = "Une erreur s'est produite. Merci de réessayer ou d'envoyer un email directement.";
+                    statusDiv.classList.remove('hidden', 'text-green-600');
+                    statusDiv.classList.add('text-red-600', 'block');
+                }
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = content[currentLang].contact.btn;
+                initLucide();
+            });
+        }
+
+        // Changement de langue dynamique (sans re-render complet, mais on re-render pour simplifier)
+        function setLanguage(lang) {
+            currentLang = lang;
+            render();
+        }
+
+        function updateLanguageSwitcher() {
             const languages = [
                 { code: 'fr', label: 'FR' },
                 { code: 'de', label: 'DE' },
@@ -393,632 +606,27 @@
                 { code: 'it', label: 'IT' },
                 { code: 'es', label: 'ES' }
             ];
-
-            return (
-                <div className="flex space-x-1" aria-label="Choisir la langue">
-                    {languages.map((lang) => (
-                        <button
-                            key={lang.code}
-                            onClick={() => setLang(lang.code)}
-                            className={`text-xs font-semibold px-2 py-1 rounded transition-colors ${
-                                currentLang === lang.code 
-                                ? 'bg-emerald-800 text-white' 
-                                : 'text-stone-600 hover:text-emerald-800 hover:bg-stone-200'
-                            }`}
-                        >
-                            {lang.label}
-                        </button>
-                    ))}
+            const desktopContainer = document.getElementById('language-switcher-desktop');
+            const mobileContainer = document.getElementById('language-switcher-mobile');
+            const switcherHtml = (containerClass) => `
+                <div class="flex space-x-1" aria-label="Choisir la langue">
+                    ${languages.map(lang => `
+                        <button class="lang-btn text-xs font-semibold px-2 py-1 rounded transition-colors ${currentLang === lang.code ? 'bg-emerald-800 text-white' : 'text-stone-600 hover:text-emerald-800 hover:bg-stone-200'}" data-lang="${lang.code}">${lang.label}</button>
+                    `).join('')}
                 </div>
-            );
-        };
-
-        const Icon = ({ name, size = 24, className }) => {
-            React.useEffect(() => {
-                lucide.createIcons();
-            }, [name]);
-            return <i data-lucide={name} width={size} height={size} className={className}></i>;
-        };
-
-        const CookieBanner = ({ t }) => {
-            const [isVisible, setIsVisible] = useState(false);
-
-            useEffect(() => {
-                const consent = localStorage.getItem('rikunali-cookie-consent');
-                if (!consent) {
-                    setIsVisible(true);
-                }
-            }, []);
-
-            const handleAction = (choice) => {
-                localStorage.setItem('rikunali-cookie-consent', choice);
-                setIsVisible(false);
-            };
-
-            if (!isVisible) return null;
-
-            return (
-                <div className="fixed bottom-0 left-0 w-full bg-stone-900 text-white p-4 z-50 shadow-lg border-t border-stone-700 flex flex-col md:flex-row items-center justify-between gap-4 fade-in">
-                    <div className="text-sm md:text-base text-center md:text-left max-w-2xl">
-                        {t.cookies.text}
-                    </div>
-                    <div className="flex space-x-4">
-                        <button onClick={() => handleAction('declined')} className="text-sm text-stone-400 hover:text-white transition underline">
-                            {t.cookies.decline}
-                        </button>
-                        <button onClick={() => handleAction('accepted')} className="bg-emerald-700 hover:bg-emerald-600 text-white px-6 py-2 rounded-full text-sm font-semibold transition">
-                            {t.cookies.accept}
-                        </button>
-                    </div>
-                </div>
-            );
-        };
-
-        // --- NOUVEAU COMPOSANT POPUP ---
-        const PromoPopup = ({ t, onClose }) => {
-            return (
-                <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 fade-in">
-                    <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose}></div>
-                    <div className="relative bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center border-t-4 border-emerald-600 transform transition-all scale-100">
-                        <button onClick={onClose} className="absolute top-4 right-4 text-stone-400 hover:text-stone-600">
-                            <Icon name="x" size={24} />
-                        </button>
-                        <div className="mb-6 text-emerald-700 flex justify-center">
-                             <Icon name="gift" size={48} />
-                        </div>
-                        <h3 className="text-2xl font-serif font-bold text-stone-800 mb-3">{t.popup.title}</h3>
-                        <p className="text-stone-600 mb-8 leading-relaxed">{t.popup.text}</p>
-                        <a href="#contact" onClick={onClose} className="block w-full bg-emerald-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-emerald-800 transition shadow-md transform hover:scale-[1.02]">
-                            {t.popup.btn}
-                        </a>
-                        <button onClick={onClose} className="mt-4 text-sm text-stone-400 hover:text-stone-600 underline">
-                            {t.popup.close}
-                        </button>
-                    </div>
-                </div>
-            );
+            `;
+            if (desktopContainer) desktopContainer.innerHTML = switcherHtml('desktop');
+            if (mobileContainer) mobileContainer.innerHTML = switcherHtml('mobile');
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const newLang = btn.dataset.lang;
+                    if (newLang) setLanguage(newLang);
+                });
+            });
         }
 
-        const FloatingControls = () => {
-            const [showTopBtn, setShowTopBtn] = useState(false);
-
-            useEffect(() => {
-                const handleScroll = () => {
-                    setShowTopBtn(window.scrollY > 400);
-                };
-                window.addEventListener('scroll', handleScroll);
-                return () => window.removeEventListener('scroll', handleScroll);
-            }, []);
-
-            const scrollToTop = () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
-
-            return (
-                <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end space-y-3">
-                    
-                    <a 
-                        href="https://wa.me/41765483217" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="float-btn w-12 h-12 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl"
-                        title="Contact WhatsApp"
-                        aria-label="Contacter sur WhatsApp"
-                    >
-                        <Icon name="message-circle" size={24} />
-                    </a>
-
-                    <a 
-                        href="tel:+41765483217" 
-                        className="float-btn w-12 h-12 bg-emerald-700 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl"
-                        title="Appeler"
-                        aria-label="Appeler par téléphone"
-                    >
-                        <Icon name="phone" size={24} />
-                    </a>
-
-                    {showTopBtn && (
-                        <button 
-                            onClick={scrollToTop}
-                            className="float-btn w-12 h-12 bg-stone-800 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl opacity-90"
-                            title="Haut de page"
-                            aria-label="Retour en haut de page"
-                        >
-                            <Icon name="arrow-up" size={24} />
-                        </button>
-                    )}
-                </div>
-            );
-        };
-
-        // --- COMPOSANT LIGHTBOX (Zoom Image) ---
-        const Lightbox = ({ imageSrc, altText, onClose }) => {
-            if (!imageSrc) return null;
-
-            return (
-                <div 
-                    className="fixed inset-0 z-[60] lightbox-overlay flex items-center justify-center p-4 fade-in"
-                    onClick={onClose}
-                >
-                    <button 
-                        onClick={onClose} 
-                        className="absolute top-4 right-4 text-white hover:text-emerald-400 transition"
-                        aria-label="Fermer"
-                    >
-                        <Icon name="x" size={40} />
-                    </button>
-                    <img 
-                        src={imageSrc} 
-                        alt={altText} 
-                        className="max-h-[90vh] max-w-[90vw] object-contain rounded shadow-2xl"
-                        onClick={(e) => e.stopPropagation()} 
-                    />
-                    <div className="absolute bottom-8 text-white bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm">
-                        {altText}
-                    </div>
-                </div>
-            );
-        };
-
-        // --- APPLICATION PRINCIPALE ---
-
-        const App = () => {
-            const [lang, setLang] = useState('fr');
-            const [isMenuOpen, setIsMenuOpen] = useState(false);
-            const [scrolled, setScrolled] = useState(false);
-            
-            // State pour la lightbox
-            const [selectedImage, setSelectedImage] = useState(null);
-            const [selectedImageAlt, setSelectedImageAlt] = useState("");
-
-            // State pour la popup
-            const [showPromoPopup, setShowPromoPopup] = useState(false);
-
-            // State pour le formulaire
-            const [formStatus, setFormStatus] = useState('idle'); // idle, submitting, success
-
-            const t = content[lang];
-
-            useEffect(() => {
-                const handleScroll = () => {
-                    setScrolled(window.scrollY > 50);
-                };
-                window.addEventListener('scroll', handleScroll);
-                return () => window.removeEventListener('scroll', handleScroll);
-            }, []);
-
-            // Logique d'affichage de la popup
-            useEffect(() => {
-                const hasSeenPopup = sessionStorage.getItem('rikunali-promo-popup');
-                if (!hasSeenPopup) {
-                    const timer = setTimeout(() => {
-                        setShowPromoPopup(true);
-                    }, 5000); // 5 secondes de délai
-                    return () => clearTimeout(timer);
-                }
-            }, []);
-
-            const closePromoPopup = () => {
-                setShowPromoPopup(false);
-                sessionStorage.setItem('rikunali-promo-popup', 'true');
-            };
-
-            useEffect(() => {
-                lucide.createIcons();
-            }, [lang, isMenuOpen, formStatus, showPromoPopup]); 
-
-            const openLightbox = (src, alt) => {
-                setSelectedImage(src);
-                setSelectedImageAlt(alt);
-            };
-
-            const closeLightbox = () => {
-                setSelectedImage(null);
-                setSelectedImageAlt("");
-            };
-
-            const handleFormSubmit = (e) => {
-                e.preventDefault();
-                setFormStatus('submitting');
-                
-                // Simulation d'envoi API
-                setTimeout(() => {
-                    setFormStatus('success');
-                    e.target.reset();
-                }, 1500);
-            };
-
-            return (
-                <div className="min-h-screen flex flex-col font-sans relative">
-                    
-                    {/* POPUP & CONTROLS */}
-                    {showPromoPopup && <PromoPopup t={t} onClose={closePromoPopup} />}
-                    <FloatingControls />
-                    <CookieBanner t={t} />
-                    <Lightbox imageSrc={selectedImage} altText={selectedImageAlt} onClose={closeLightbox} />
-
-                    {/* HEADER */}
-                    <header className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'glass-nav py-2' : 'bg-transparent py-4'}`}>
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <div className="flex justify-between items-center h-20">
-                                
-                                <div className="flex-shrink-0 flex items-center cursor-pointer h-full py-1" onClick={() => window.scrollTo(0,0)}>
-                                    <img 
-                                        src="assets/logo-rikunali.webp" 
-                                        alt="Rikunali Logo" 
-                                        className="h-full w-auto max-h-16 object-contain"
-                                        onError={(e) => {
-                                            e.target.style.display = 'none';
-                                            e.target.nextSibling.style.display = 'block';
-                                        }}
-                                    />
-                                    <span className="font-serif text-2xl font-bold text-emerald-800 tracking-wider hidden pl-2">Rikunali</span>
-                                </div>
-
-                                {/* Navigation Desktop */}
-                                <nav className="hidden md:flex space-x-6 items-center" role="navigation">
-                                    <a href="#services" className={`font-medium hover:text-emerald-700 transition ${scrolled ? 'text-stone-600' : 'text-stone-100 hover:text-white drop-shadow-md'}`}>{t.nav.geo}</a>
-                                    <a href="#services" className={`font-medium hover:text-emerald-700 transition ${scrolled ? 'text-stone-600' : 'text-stone-100 hover:text-white drop-shadow-md'}`}>{t.nav.healing}</a>
-                                    <a href="#gallery" className={`font-medium hover:text-emerald-700 transition ${scrolled ? 'text-stone-600' : 'text-stone-100 hover:text-white drop-shadow-md'}`}>{t.nav.gallery}</a>
-                                    <a href="#shop" className={`font-medium hover:text-emerald-700 transition ${scrolled ? 'text-stone-600' : 'text-stone-100 hover:text-white drop-shadow-md'}`}>{t.nav.shop}</a>
-                                    <a href="#about" className={`font-medium hover:text-emerald-700 transition ${scrolled ? 'text-stone-600' : 'text-stone-100 hover:text-white drop-shadow-md'}`}>{t.nav.about}</a>
-                                    <a href="#contact" className="px-5 py-2 bg-emerald-700 text-white rounded-full hover:bg-emerald-800 transition shadow-lg text-sm font-semibold tracking-wide">
-                                        {t.nav.contact}
-                                    </a>
-                                    <div className={`border-l pl-4 ${scrolled ? 'border-stone-300' : 'border-stone-400'}`}>
-                                        <LanguageSwitcher currentLang={lang} setLang={setLang} />
-                                    </div>
-                                </nav>
-
-                                {/* Mobile Burger */}
-                                <div className="md:hidden flex items-center space-x-4">
-                                    <div className="bg-white/80 rounded px-1">
-                                        <LanguageSwitcher currentLang={lang} setLang={setLang} />
-                                    </div>
-                                    <button 
-                                        onClick={() => setIsMenuOpen(!isMenuOpen)} 
-                                        className={`hover:text-emerald-700 ${scrolled ? 'text-stone-600' : 'text-white'}`}
-                                        aria-label="Ouvrir le menu"
-                                    >
-                                        <Icon name={isMenuOpen ? "x" : "menu"} />
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Mobile Menu */}
-                        {isMenuOpen && (
-                            <div className="md:hidden bg-white/95 backdrop-blur border-t border-stone-100 fade-in absolute w-full shadow-xl h-screen">
-                                <div className="px-4 pt-4 pb-6 space-y-4 flex flex-col items-center mt-10">
-                                    <a href="#services" onClick={()=>setIsMenuOpen(false)} className="block px-3 py-2 text-2xl text-stone-600 hover:text-emerald-800">{t.nav.geo}</a>
-                                    <a href="#services" onClick={()=>setIsMenuOpen(false)} className="block px-3 py-2 text-2xl text-stone-600 hover:text-emerald-800">{t.nav.healing}</a>
-                                    <a href="#gallery" onClick={()=>setIsMenuOpen(false)} className="block px-3 py-2 text-2xl text-stone-600 hover:text-emerald-800">{t.nav.gallery}</a>
-                                    <a href="#shop" onClick={()=>setIsMenuOpen(false)} className="block px-3 py-2 text-2xl text-stone-600 hover:text-emerald-800">{t.nav.shop}</a>
-                                    <a href="#about" onClick={()=>setIsMenuOpen(false)} className="block px-3 py-2 text-2xl text-stone-600 hover:text-emerald-800">{t.nav.about}</a>
-                                    <a href="#contact" onClick={()=>setIsMenuOpen(false)} className="block px-6 py-3 text-white font-bold bg-emerald-700 rounded-full mt-4">{t.nav.contact}</a>
-                                </div>
-                            </div>
-                        )}
-                    </header>
-
-                    {/* HERO SECTION */}
-                    <section className="relative h-screen flex items-center justify-center text-center overflow-hidden">
-                        <video 
-                            autoPlay 
-                            muted 
-                            loop 
-                            playsInline 
-                            poster="assets/rikunali-portrait.webp" /* Poster pour chargement rapide */
-                            className="absolute inset-0 w-full h-full object-cover z-0"
-                            src="assets/rikunali-geobiologie-soins-energetiques-suisse.mp4"
-                        >
-                            Your browser does not support the video tag.
-                        </video>
-                        <div className="absolute inset-0 video-overlay z-10"></div>
-                        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 z-20 pt-20">
-                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-8 leading-tight fade-in drop-shadow-lg">
-                                {t.hero.title}
-                            </h1>
-                            <p className="text-xl md:text-2xl text-stone-100 mb-10 max-w-3xl mx-auto font-light drop-shadow-md">
-                                {t.hero.subtitle}
-                            </p>
-                            <a href="#contact" className="inline-block bg-white/10 backdrop-blur-sm border border-white/50 hover:bg-white hover:text-emerald-900 text-white font-semibold py-4 px-10 rounded-full transition duration-300 transform hover:scale-105">
-                                {t.hero.cta}
-                            </a>
-                        </div>
-                        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 text-white animate-bounce cursor-pointer" onClick={() => document.getElementById('services').scrollIntoView({behavior: 'smooth'})}>
-                            <Icon name="chevron-down" size={32} />
-                        </div>
-                    </section>
-
-                    {/* SERVICES SECTION */}
-                    <section id="services" className="py-24 bg-stone-50 relative z-30">
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <div className="text-center mb-20">
-                                <span className="text-emerald-700 text-sm font-bold tracking-widest uppercase mb-2 block">Domaines d'intervention</span>
-                                <h2 className="text-4xl md:text-5xl font-serif text-stone-800">{t.services.title}</h2>
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                <article className="group bg-white p-10 rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-                                    <div className="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-800 mb-6 group-hover:bg-emerald-800 group-hover:text-white transition-colors duration-300">
-                                        <Icon name="home" size={32} />
-                                    </div>
-                                    <h3 className="text-2xl font-serif font-bold mb-4 text-stone-800">{t.services.geo_title}</h3>
-                                    <p className="text-stone-600 leading-relaxed mb-6">
-                                        {t.services.geo_desc}
-                                    </p>
-                                    <a href="#contact" className="text-emerald-700 font-semibold hover:text-emerald-900 flex items-center">
-                                        En savoir plus <Icon name="arrow-right" size={16} className="ml-2" />
-                                    </a>
-                                </article>
-                                <article className="group bg-white p-10 rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-                                    <div className="w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center text-amber-700 mb-6 group-hover:bg-amber-600 group-hover:text-white transition-colors duration-300">
-                                        <Icon name="sun" size={32} />
-                                    </div>
-                                    <h3 className="text-2xl font-serif font-bold mb-4 text-stone-800">{t.services.heal_title}</h3>
-                                    <p className="text-stone-600 leading-relaxed mb-6">
-                                        {t.services.heal_desc}
-                                    </p>
-                                    <a href="#contact" className="text-amber-700 font-semibold hover:text-amber-900 flex items-center">
-                                        En savoir plus <Icon name="arrow-right" size={16} className="ml-2" />
-                                    </a>
-                                </article>
-                                <article className="group bg-white p-10 rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" id="shop">
-                                    <div className="w-16 h-16 bg-stone-100 rounded-full flex items-center justify-center text-stone-600 mb-6 group-hover:bg-stone-600 group-hover:text-white transition-colors duration-300">
-                                        <Icon name="gem" size={32} />
-                                    </div>
-                                    <h3 className="text-2xl font-serif font-bold mb-4 text-stone-800">{t.services.shop_title}</h3>
-                                    <p className="text-stone-600 leading-relaxed mb-6">
-                                        {t.services.shop_desc}
-                                    </p>
-                                    <span className="text-stone-500 text-sm italic border-b border-stone-200 pb-1">Bientôt disponible en ligne</span>
-                                </article>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* GALERIE ARTISTIQUE */}
-                    <section id="gallery" className="py-24 bg-stone-100">
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <div className="text-center mb-16">
-                                <span className="text-emerald-700 text-sm font-bold tracking-widest uppercase mb-2 block">L'Art Vibratoire</span>
-                                <h2 className="text-4xl md:text-5xl font-serif text-stone-800 mb-4">{t.gallery.title}</h2>
-                                <p className="text-stone-600 max-w-2xl mx-auto">{t.gallery.subtitle}</p>
-                            </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {/* Image 1 : Mandala Bleu */}
-                                <div 
-                                    className="gallery-item relative group overflow-hidden rounded-xl shadow-lg aspect-square cursor-zoom-in"
-                                    onClick={() => openLightbox('assets/oeuvre-mandala-bleu.webp', t.gallery.item1)}
-                                >
-                                    <img 
-                                        src="assets/oeuvre-mandala-bleu.webp" 
-                                        alt={t.gallery.item1} 
-                                        loading="lazy"
-                                        className="gallery-img w-full h-full object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                        <span className="text-white font-serif text-xl">{t.gallery.item1}</span>
-                                    </div>
-                                </div>
-
-                                {/* Image 2 : Portrait Tribal */}
-                                <div 
-                                    className="gallery-item relative group overflow-hidden rounded-xl shadow-lg aspect-[3/4] cursor-zoom-in md:row-span-2"
-                                    onClick={() => openLightbox('assets/oeuvre-portrait-tribal.webp', t.gallery.item2)}
-                                >
-                                    <img 
-                                        src="assets/oeuvre-portrait-tribal.webp" 
-                                        alt={t.gallery.item2} 
-                                        loading="lazy"
-                                        className="gallery-img w-full h-full object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                        <span className="text-white font-serif text-xl">{t.gallery.item2}</span>
-                                    </div>
-                                </div>
-
-                                {/* Image 3 : Fresque Amazonie */}
-                                <div 
-                                    className="gallery-item relative group overflow-hidden rounded-xl shadow-lg aspect-square cursor-zoom-in"
-                                    onClick={() => openLightbox('assets/oeuvre-fresque-amazonie.webp', t.gallery.item3)}
-                                >
-                                    <img 
-                                        src="assets/oeuvre-fresque-amazonie.webp" 
-                                        alt={t.gallery.item3} 
-                                        loading="lazy"
-                                        className="gallery-img w-full h-full object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                        <span className="text-white font-serif text-xl">{t.gallery.item3}</span>
-                                    </div>
-                                </div>
-
-                                {/* Image 4 : Lumière Intérieure */}
-                                <div 
-                                    className="gallery-item relative group overflow-hidden rounded-xl shadow-lg aspect-[3/4] cursor-zoom-in md:row-span-2 lg:col-start-3 lg:row-start-1"
-                                    onClick={() => openLightbox('assets/oeuvre-lumiere-interieure.webp', t.gallery.item4)}
-                                >
-                                    <img 
-                                        src="assets/oeuvre-lumiere-interieure.webp" 
-                                        alt={t.gallery.item4} 
-                                        loading="lazy"
-                                        className="gallery-img w-full h-full object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                        <span className="text-white font-serif text-xl">{t.gallery.item4}</span>
-                                    </div>
-                                </div>
-
-                                {/* Image 5 : Vision Nature */}
-                                <div 
-                                    className="gallery-item relative group overflow-hidden rounded-xl shadow-lg aspect-square cursor-zoom-in lg:col-start-1"
-                                    onClick={() => openLightbox('assets/oeuvre-vision-nature.webp', t.gallery.item5)}
-                                >
-                                    <img 
-                                        src="assets/oeuvre-vision-nature.webp" 
-                                        alt={t.gallery.item5} 
-                                        loading="lazy"
-                                        className="gallery-img w-full h-full object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                        <span className="text-white font-serif text-xl">{t.gallery.item5}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* PARALLAX */}
-                    <div className="relative h-96 bg-fixed bg-center bg-cover bg-no-repeat" style={{backgroundImage: "url('https://images.unsplash.com/photo-1518531933037-9a60aa2071a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"}}>
-                        <div className="absolute inset-0 bg-emerald-900/40 flex items-center justify-center">
-                            <p className="text-white text-3xl md:text-4xl font-serif italic text-center px-4 max-w-4xl">
-                                "L'invisible est la racine du visible."
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* ABOUT SECTION */}
-                    <section id="about" className="py-24 bg-white">
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <div className="flex flex-col lg:flex-row items-center gap-16">
-                                <div className="lg:w-1/2 relative">
-                                    <div className="absolute -top-4 -left-4 w-24 h-24 bg-stone-100 rounded-full z-0"></div>
-                                    <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-emerald-50 rounded-full z-0"></div>
-                                    
-                                    <div className="relative z-10 rounded-xl overflow-hidden shadow-2xl h-[600px] w-full group">
-                                        <img 
-                                            src="assets/rikunali-portrait.webp" 
-                                            alt="Rikunali Portrait" 
-                                            loading="lazy"
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                        />
-                                        <div className="absolute bottom-4 right-4 bg-white/90 p-2 rounded-lg shadow-lg backdrop-blur-sm">
-                                            <img 
-                                                src="assets/rikunali-logo-carre.webp" 
-                                                alt="Sceau Rikunali"
-                                                loading="lazy"
-                                                className="w-20 h-20 object-contain opacity-90"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="lg:w-1/2">
-                                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-stone-800 mb-8">{t.about.title}</h2>
-                                    <p className="text-lg text-stone-600 mb-6 leading-relaxed">
-                                        {t.about.desc1}
-                                    </p>
-                                    <p className="text-lg text-stone-600 mb-10 leading-relaxed font-light">
-                                        {t.about.desc2}
-                                    </p>
-                                    
-                                    <div className="grid grid-cols-2 gap-8 border-t border-stone-100 pt-8">
-                                        <div>
-                                            <span className="text-4xl font-bold text-emerald-800 block mb-1">15+</span>
-                                            <span className="text-sm text-stone-500 uppercase tracking-wide">{t.about.stats_exp}</span>
-                                        </div>
-                                        <div>
-                                            <div className="text-4xl font-bold text-emerald-800 block mb-1">
-                                                <Icon name="map-pin" size={36} className="inline-block" />
-                                            </div>
-                                            <span className="text-sm text-stone-500 uppercase tracking-wide">{t.about.stats_loc}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {/* CONTACT SECTION */}
-                    <section id="contact" className="py-24 bg-stone-100">
-                        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                            <div className="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row">
-                                <div className="md:w-5/12 bg-emerald-800 p-10 text-white flex flex-col justify-between">
-                                    <div>
-                                        <h3 className="text-2xl font-serif mb-6">Contact</h3>
-                                        <p className="text-emerald-100 mb-8 leading-relaxed">
-                                            Rikunali<br/>
-                                            Les Murmures du Silence
-                                        </p>
-                                        <div className="space-y-4">
-                                            <div className="flex items-center space-x-3 text-emerald-100">
-                                                <Icon name="phone" size={20} />
-                                                <a href="tel:+41765483217" className="hover:text-white transition">076 548 32 17</a>
-                                            </div>
-                                            <div className="flex items-center space-x-3 text-emerald-100">
-                                                <Icon name="mail" size={20} />
-                                                <a href="mailto:esprit@rikunali.ch" className="hover:text-white transition">esprit@rikunali.ch</a>
-                                            </div>
-                                            <div className="flex items-center space-x-3 text-emerald-100">
-                                                <Icon name="map-pin" size={20} />
-                                                <span>Suisse Romande</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="mt-12 flex space-x-4">
-                                        <a href="#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-emerald-700 flex items-center justify-center hover:bg-emerald-600 transition" aria-label="Instagram"><Icon name="instagram" size={20} /></a>
-                                        <a href="#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-emerald-700 flex items-center justify-center hover:bg-emerald-600 transition" aria-label="Facebook"><Icon name="facebook" size={20} /></a>
-                                    </div>
-                                </div>
-                                
-                                <div className="md:w-7/12 p-10">
-                                    <h2 className="text-3xl font-serif font-bold text-stone-800 mb-2">{t.contact.title}</h2>
-                                    <p className="text-stone-500 mb-8 text-sm">{t.contact.info}</p>
-                                    
-                                    <form className="space-y-5" onSubmit={handleFormSubmit}>
-                                        <div>
-                                            <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">{t.contact.form_name}</label>
-                                            <input type="text" name="name" required minLength="2" className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:bg-white outline-none transition" disabled={formStatus === 'submitting'} />
-                                        </div>
-                                        <div>
-                                            <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">{t.contact.form_email}</label>
-                                            <input type="email" name="email" required className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:bg-white outline-none transition" disabled={formStatus === 'submitting'} />
-                                        </div>
-                                        <div>
-                                            <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-2">{t.contact.form_msg}</label>
-                                            <textarea name="message" required rows="4" className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-lg focus:ring-2 focus:ring-emerald-600 focus:bg-white outline-none transition" disabled={formStatus === 'submitting'}></textarea>
-                                        </div>
-                                        
-                                        <button 
-                                            type="submit" 
-                                            className={`w-full font-bold py-4 px-6 rounded-lg transition transform hover:-translate-y-1 shadow-lg flex items-center justify-center ${
-                                                formStatus === 'success' 
-                                                ? 'bg-green-600 text-white' 
-                                                : 'bg-stone-800 text-white hover:bg-stone-900'
-                                            }`}
-                                            disabled={formStatus === 'submitting'}
-                                        >
-                                            {formStatus === 'submitting' && <Icon name="loader" className="animate-spin mr-2" />}
-                                            {formStatus === 'success' ? t.contact.success : t.contact.btn}
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <footer className="bg-stone-900 text-stone-400 py-12 border-t border-stone-800">
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-                            <div className="text-center md:text-left">
-                                <span className="text-2xl font-serif font-bold text-white tracking-wider">Rikunali</span>
-                                <p className="text-xs mt-2 text-stone-500">© 2025 Rikunali. Tous droits réservés.</p>
-                            </div>
-                            <div className="flex space-x-8 text-sm font-medium">
-                                <a href="#" className="hover:text-white transition">Mentions Légales</a>
-                                <a href="#" className="hover:text-white transition">Confidentialité</a>
-                                <a href="#" className="hover:text-white transition">CGV</a>
-                            </div>
-                        </div>
-                    </footer>
-                </div>
-            );
-        };
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+        // Initialisation
+        render();
     </script>
 </body>
 </html>
